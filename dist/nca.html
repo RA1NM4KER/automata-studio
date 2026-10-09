@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Neural growth experiment · Automata Studio</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script type="module" src="./src/nca-app.js"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">◉</span>
+        <div>
+          <h1>Neural <span>growth</span></h1>
+          <p>
+            Separate local experiment. Learned weights only during playback.
+          </p>
+        </div>
+      </div>
+      <a href="./index.html">Classical studio</a>
+    </header>
+    <main class="workspace">
+      <section class="instrument">
+        <div class="section-line">
+          <span class="eyebrow">NEURAL CELLULAR AUTOMATON</span
+          ><span id="nca-status" class="secondary">Load or train a model.</span>
+        </div>
+        <div class="stage">
+          <div class="stage-header">
+            <span id="nca-title">NO MODEL</span
+            ><span id="nca-generation">0000</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas
+              id="nca-art"
+              width="512"
+              height="512"
+              aria-label="Neural cellular automaton simulation"
+            ></canvas>
+          </div>
+        </div>
+        <div class="transport">
+          <div>
+            <button id="nca-play" class="primary" disabled>Play</button
+            ><button id="nca-step" disabled>Step +1</button
+            ><button id="nca-reset" class="quiet" disabled>Restart seed</button>
+          </div>
+          <label class="speed"
+            >Speed
+            <select id="nca-speed">
+              <option value="4">4 / sec</option>
+              <option value="12" selected>12 / sec</option>
+              <option value="30">30 / sec</option>
+            </select></label
+          >
+        </div>
+        <p class="hint">
+          Playback receives one seed cell and the shared learned rule. It never
+          requests the training target.
+        </p>
+      </section>
+      <aside class="settings">
+        <section class="setting-group">
+          <div class="section-line">
+            <h2>Prepare target</h2>
+            <span class="eyebrow">01</span>
+          </div>
+          <label class="field"
+            >Local portrait<input
+              id="train-image"
+              type="file"
+              accept="image/png,image/jpeg,image/webp" /></label
+          ><label class="field"
+            >Run name<input
+              id="train-name"
+              value="portrait"
+              maxlength="48" /></label
+          ><button id="prepare-target" class="wide">
+            Prepare 64 × 64 target
+          </button>
+          <div id="target-preview" class="target-preview" hidden>
+            <img id="target-image" alt="Exact processed training target" />
+            <p class="hint">
+              This exact image is used for training. Continue only if the crop
+              reads well.
+            </p>
+          </div>
+        </section>
+        <section class="setting-group">
+          <div class="section-line">
+            <h2>Train locally</h2>
+            <span class="eyebrow">02</span>
+          </div>
+          <label class="field"
+            >Optimisation steps<input
+              id="train-steps"
+              type="number"
+              min="1"
+              max="10000"
+              value="4000" /></label
+          ><button id="start-training" class="primary wide" disabled>
+            Start training</button
+          ><progress id="train-progress" max="4000" value="0"></progress>
+          <p id="train-message" class="hint">Prepare a target first.</p>
+          <button id="load-trained" class="wide" disabled>
+            Load learned weights
+          </button>
+        </section>
+        <section class="setting-group">
+          <div class="section-line">
+            <h2>Model playback</h2>
+            <span class="eyebrow">03</span>
+          </div>
+          <label class="field"
+            >Exported model JSON<input
+              id="nca-file"
+              type="file"
+              accept="application/json,.json" /></label
+          ><button id="nca-export" class="primary wide" disabled>
+            Export PNG
+          </button>
+          <p class="hint">
+            Targets and checkpoints remain under ignored local directories. A
+            model JSON contains only learned rule weights and configuration.
+          </p>
+        </section>
+      </aside>
+    </main>
+  </body>
+</html>

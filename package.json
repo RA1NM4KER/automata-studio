@@ -1,0 +1,20 @@
+{
+  "name": "automata-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A local cellular automata instrument for growing and exporting avatars.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "check:discovery": "node scripts/check-discovery.mjs",
+    "nca:target": ".nca-venv/bin/python nca/prepare_target.py",
+    "nca:train": ".nca-venv/bin/python nca/train.py",
+    "nca:evaluate": ".nca-venv/bin/python nca/evaluate.py",
+    "search:hex": ".nca-venv/bin/python search/hex_search.py"
+  }
+}

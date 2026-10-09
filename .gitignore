@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+.sites-runtime/
+*.log
+nca-runs/
+nca-inputs/
+.nca-venv/
+search-runs/
+__pycache__/
+*.py[cod]
+.venv/
+docs/CONTEXT.md
+docs/HANDOFF.md
